@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <title>Drawing Data</title>
     <script src="https://d3js.org/d3.v3.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
     <style>
         .bar{
@@ -27,30 +33,101 @@
     </style>
 
 </head>
+
+
 <body>
+
+    <p>Hi there Peter, Please do Select the years properly, not protecting the order for now</p>
+
+    <div class="form-group">
+        <label for="yearStart">Starting year:</label>
+        <select class="form-control" id="yearStart">
+
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="yearEnd">End Year:</label>
+        <select class="form-control" id="yearEnd">
+
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="Country">Country:</label>
+        <select class="form-control" id="Country">
+            <option>ISR</option>
+            <option>EGY</option>
+            <option>JOR</option>
+            <option>LBN</option>
+            <option>PSE</option>
+        </select>
+    </div>
+
+    <button type="button" class="btn btn-primary" onclick="onUpdate()">Update..!</button>
+
+    <p>High-technology exports (current US$)</p>
 
 
     <script>
-        var parsedJson = [];
 
         for (var i = 1980; i < 2016; i++) {
-            var xhr = new XMLHttpRequest();
-            var reqStr = "http://localhost:5000/getCountryHiTechInfo?country=EGY&year=" + i;
-            xhr.open("GET", reqStr, false);
-            xhr.send();
+            $('#yearStart').append($('<option>', {
+                value: i,
+                text: i
+            }));
+            $('#yearEnd').append($('<option>', {
+                value: i,
+                text: i
+            }));
+        }
+
+
+
+        function printUpdate() {
+            var start = document.getElementById('yearStart');
+            var end = document.getElementById('yearEnd');
+            var country = document.getElementById('Country');
+            console.log('Start Year: ' + start.options[start.selectedIndex].value);
+            console.log('End Year: ' + end.options[end.selectedIndex].value);
+            console.log('country: ' + country.options[country.selectedIndex].value);
+        }
+
+        function onUpdate() {
+            d3.select("svg").remove();
+            var start = document.getElementById('yearStart');
+            var end = document.getElementById('yearEnd');
+            var country = document.getElementById('Country');
+            console.log('Start Year: ' + start.options[start.selectedIndex].value);
+            console.log('End Year: ' + end.options[end.selectedIndex].value);
+            console.log('country: ' + country.options[country.selectedIndex].value);
+
+            var yearStart = start.options[start.selectedIndex].value;
+            var yearEnd = end.options[end.selectedIndex].value;
+            var cntryName = country.options[country.selectedIndex].value;
+
+            var parsedJson = [];
+
+            for (var i = yearStart; i <= yearEnd; i++) {
+                var xhr = new XMLHttpRequest();
+                var reqStr = "http://localhost:5000/getCountryHiTechInfo?country=" + cntryName + "&year=" + i;
+                xhr.open("GET", reqStr, false);
+                xhr.send();
 
 //            console.log(xhr.response);
-            parsedJson.push(JSON.parse(xhr.response));
+                parsedJson.push(JSON.parse(xhr.response));
 //            parsedJson = parsedJson / 1000000;
 //            console.log(parsedJson[parseInt(i)]);
 //            dataset.push(parseInt(parsedJson[i])/10000000);
 //            console.log(xhr.status);
 //            console.log(xhr.statusText);
-        }
+            }
 
 //        console.log(parsedJson.stringify());
 
-        updateBars(parsedJson);
+            updateBars(parsedJson);
+        }
+
 
 
         function updateBars(jsonToWorkWith) {
@@ -118,7 +195,7 @@
                     .attr("y", 5)
                     .attr("dy", ".71em")
                     .style("text-anchor", "end")
-                    .text("Value");
+                    .text("High-technology exports (In Millions US$)");
 
 
             // Add bar chart
