@@ -24,8 +24,8 @@
       <file leaf-file-name="Index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/D3Htmls/Index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="355" column="39" selection-start-line="355" selection-start-column="32" selection-end-line="355" selection-end-column="39" />
+            <state relative-caret-position="328">
+              <caret line="217" column="45" selection-start-line="217" selection-start-column="45" selection-end-line="217" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -34,10 +34,10 @@
       <file leaf-file-name="Index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NodeInfoServer/Index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="51" column="47" selection-start-line="51" selection-start-column="47" selection-end-line="51" selection-end-column="47" />
+            <state relative-caret-position="212">
+              <caret line="45" column="29" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
               <folding>
-                <marker date="1495926990000" expanded="true" signature="1980:2165" placeholder="..." />
+                <marker date="1495927405000" expanded="true" signature="2030:2215" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -311,12 +311,12 @@
       <workItem from="1491315080429" duration="3551000" />
       <workItem from="1495816495270" duration="4137000" />
       <workItem from="1495877875921" duration="164000" />
-      <workItem from="1495879539497" duration="27659000" />
+      <workItem from="1495879539497" duration="28074000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35511000" />
+    <option name="totallyTimeSpent" value="35926000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="70" y="40" width="1825" height="962" extended-state="0" />
@@ -646,18 +646,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/D3Htmls/Index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="355" column="39" selection-start-line="355" selection-start-column="32" selection-end-line="355" selection-end-column="39" />
+        <state relative-caret-position="328">
+          <caret line="217" column="45" selection-start-line="217" selection-start-column="45" selection-end-line="217" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/NodeInfoServer/Index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="51" column="47" selection-start-line="51" selection-start-column="47" selection-end-line="51" selection-end-column="47" />
+        <state relative-caret-position="212">
+          <caret line="45" column="29" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
           <folding>
-            <marker date="1495926990000" expanded="true" signature="1980:2165" placeholder="..." />
+            <marker date="1495927405000" expanded="true" signature="2030:2215" placeholder="..." />
           </folding>
         </state>
       </provider>

@@ -215,8 +215,7 @@
                                 .attr("transform", function(d) {
                                     return ( "translate(" + x_scale(d.final[0]) + "," +
                                     y_scale(d.final[1]) + ")" ) ; })
-//                                .attr("x", 4)
-                                .attr("x", function(d) { return x(d.Year) })
+                                .attr("x", 4)
                                 .attr("dy", ".35em")
                                 .attr("fill", function(_, i) { return color_scale(i); })
                                 .text(function(d) {
@@ -305,7 +304,7 @@
 
 
             var xhr = new XMLHttpRequest();
-            var reqStr = "http://localhost:5000/getCountriesHiTechInfoLineCharted?yearStart=" + yearStart+ "&yearEnd=" + yearEnd;
+            var reqStr = "http://localhost:5000/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart+ "&yearEnd=" + yearEnd;
             xhr.open("GET", reqStr, false);
             xhr.send();
 

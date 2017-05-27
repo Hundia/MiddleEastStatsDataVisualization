@@ -40,14 +40,14 @@ app.get('/getCountriesHiTechInfoLineCharted', function (req, res) {
     // console.log(req);
     var yearStart = req.query.yearStart;
     var yearEnd = req.query.yearEnd;
+    var country = req.query.country;
+    console.log('Got request for Hi Tech info for country: ' + country + ' from year: ' + yearStart + ' to year:' + yearEnd);
 
-    console.log('Got request for Hi Tech info for countries from year: ' + yearStart + ' to year:' + yearEnd);
-
-    var finalRes = {'label':'Israel', 'x':[],'y':[]};
+    var finalRes = {'label': country, 'x':[],'y':[]};
 
     for (var i = yearStart; i <= yearEnd; i++) {
-        var queryRes = serverInfoApi.getCountryHiTechInfoByYear('TX.VAL.TECH.CD', i, 'ISR');
-        // console.log(queryRes);
+        var queryRes = serverInfoApi.getCountryHiTechInfoByYear('TX.VAL.TECH.CD', i, country);
+        console.log(queryRes);
 
         finalRes['y'].push(queryRes.Val/1000000);
         finalRes['x'].push(queryRes.Year);
