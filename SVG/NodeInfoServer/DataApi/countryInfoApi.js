@@ -27,8 +27,6 @@ function getCountryHiTechInfoByYear(indicatorCode, year, countryCode) {
 
         if(line['Indicator Code'] == 'TX.VAL.TECH.CD' && line['Country Code'] == countryCode)
         {
-            // console.log('Country:' + line['Country Name'] + year + ': ' + line[year]);
-
             // res['Country'] = line['Country Name'];
             res['Year'] = year;
             res['Val'] = parseInt(line[year]);
@@ -65,7 +63,7 @@ function getHiTechInfoByYear(indicatorCode, year) {
         // countryCodeToNameDict[line['Country Code']] = line.TableName;
         // console.log('key: ' +  line['Country Code'] + ' Val: ' + countryCodeToNameDict[line['Country Code']]);
     }
-    console.log(res);
+    // console.log(res);
     return res;
 }
 
