@@ -1,0 +1,27 @@
+{
+  "name": "visualization_project_eli_hundia",
+  "version": "1.1.0",
+  "description": "Visualization by Eli Hundia of the middle east general stats",
+  "main": "NodeServer.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://EHundia@bitbucket.org/EHundia/datavisualizaion.git"
+  },
+  "keywords": [
+    "Data",
+    "visualization",
+    "Eli",
+    "Hundia",
+    "Middle",
+    "East"
+  ],
+  "author": "Eli Hundia",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/EHundia/datavisualizaion#readme",
+  "dependencies": {
+    "jsonfile": "^3.0.0"
+  }
+}
