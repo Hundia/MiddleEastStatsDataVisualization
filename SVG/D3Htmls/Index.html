@@ -10,6 +10,11 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <link href="./c3/c3.css" rel="stylesheet">
+
+    <!-- Load d3.js and c3.js -->
+    <script src="./c3/d3/d3.min.js"></script>
+    <script src="./c3/c3.min.js"></script>
 
     <style>
         .bar{
@@ -64,12 +69,14 @@
         </select>
     </div>
 
-    <button type="button" class="btn btn-primary" onclick="onBarUpdate()">Update with Bars..!</button>
+    <button type="button" class="btn btn-primary" onclick="onNewBarUpdate()">Update with Bars..!</button>
     <button type="button" class="btn btn-primary" onclick="onLineUpdate()">Update with Lines..!</button>
 
 
     <p>High-technology exports (In Millions US$)</p>
 
+
+    <div id="chart"></div>
 
     <script>
 
@@ -95,7 +102,7 @@
             console.log('country: ' + country.options[country.selectedIndex].value);
         }
 
-        function updateLines(data) {
+        function Year(data) {
 
             var xy_chart = d3_xy_chart()
                     .width(600)
@@ -253,66 +260,9 @@
         }
 
 
-        function onBarUpdate() {
-            d3.select("svg").remove();
-            var start = document.getElementById('yearStart');
-            var end = document.getElementById('yearEnd');
-            var country = document.getElementById('Country');
-            console.log('Start Year: ' + start.options[start.selectedIndex].value);
-            console.log('End Year: ' + end.options[end.selectedIndex].value);
-            console.log('country: ' + country.options[country.selectedIndex].value);
-
-            var yearStart = start.options[start.selectedIndex].value;
-            var yearEnd = end.options[end.selectedIndex].value;
-            var cntryName = country.options[country.selectedIndex].value;
-
-            var parsedJson = [];
-
-            for (var i = yearStart; i <= yearEnd; i++) {
-                var xhr = new XMLHttpRequest();
-                var reqStr = "http://localhost:5000/getCountryHiTechInfo?country=" + cntryName + "&year=" + i;
-                xhr.open("GET", reqStr, false);
-                xhr.send();
-
-                console.log(xhr.response);
-                parsedJson.push(JSON.parse(xhr.response));
-//            parsedJson = parsedJson / 1000000;
-//            console.log(parsedJson[parseInt(i)]);
-//            dataset.push(parseInt(parsedJson[i])/10000000);
-//            console.log(xhr.status);
-//            console.log(xhr.statusText);
-            }
-
-//        console.log(parsedJson.stringify());
-            updateBars(parsedJson);
-        }
-
-        function onLineUpdate() {
-            d3.select("svg").remove();
-            var start = document.getElementById('yearStart');
-            var end = document.getElementById('yearEnd');
-            var country = document.getElementById('Country');
-            console.log('Start Year: ' + start.options[start.selectedIndex].value);
-            console.log('End Year: ' + end.options[end.selectedIndex].value);
-            console.log('country: ' + country.options[country.selectedIndex].value);
-
-            var yearStart = start.options[start.selectedIndex].value;
-            var yearEnd = end.options[end.selectedIndex].value;
-            var cntryName = country.options[country.selectedIndex].value;
-
-            var parsedJson = [];
 
 
-            var xhr = new XMLHttpRequest();
-            var reqStr = "http://localhost:5000/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart+ "&yearEnd=" + yearEnd;
-            xhr.open("GET", reqStr, false);
-            xhr.send();
 
-//            console.log(xhr.response);
-            parsedJson.push(JSON.parse(xhr.response));
-
-            updateLines(parsedJson);
-        }
 
 
         function updateBars(jsonToWorkWith) {
@@ -394,6 +344,155 @@
 
 
 
+        }
+
+        function onBarUpdate() {
+            d3.select("svg").remove();
+            var start = document.getElementById('yearStart');
+            var end = document.getElementById('yearEnd');
+            var country = document.getElementById('Country');
+            console.log('Start Year: ' + start.options[start.selectedIndex].value);
+            console.log('End Year: ' + end.options[end.selectedIndex].value);
+            console.log('country: ' + country.options[country.selectedIndex].value);
+
+            var yearStart = start.options[start.selectedIndex].value;
+            var yearEnd = end.options[end.selectedIndex].value;
+            var cntryName = country.options[country.selectedIndex].value;
+
+            var parsedJson = [];
+
+            for (var i = yearStart; i <= yearEnd; i++) {
+                var xhr = new XMLHttpRequest();
+                var reqStr = "http://localhost:5000/getCountryHiTechInfo?country=" + cntryName + "&year=" + i;
+                xhr.open("GET", reqStr, false);
+                xhr.send();
+
+                parsedJson.push(JSON.parse(xhr.response));
+//            parsedJson = parsedJson / 1000000;
+//            console.log(parsedJson[parseInt(i)]);
+//            dataset.push(parseInt(parsedJson[i])/10000000);
+//            console.log(xhr.status);
+//            console.log(xhr.statusText);
+            }
+
+//            console.log('Response from server:');
+//            console.log(JSON.stringify(parsedJson));
+            updateNew(parsedJson, 'bar')
+//            updateBars(parsedJson);
+        }
+
+        function onNewBarUpdate() {
+            d3.select("svg").remove();
+            var start = document.getElementById('yearStart');
+            var end = document.getElementById('yearEnd');
+            var country = document.getElementById('Country');
+            console.log('Start Year: ' + start.options[start.selectedIndex].value);
+            console.log('End Year: ' + end.options[end.selectedIndex].value);
+            console.log('country: ' + country.options[country.selectedIndex].value);
+
+            var yearStart = start.options[start.selectedIndex].value;
+            var yearEnd = end.options[end.selectedIndex].value;
+            var cntryName = country.options[country.selectedIndex].value;
+
+            var parsedJson = [];
+
+
+            var xhr = new XMLHttpRequest();
+            var reqStr = "http://localhost:5000/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart+ "&yearEnd=" + yearEnd;
+            xhr.open("GET", reqStr, false);
+            xhr.send();
+
+
+            console.log(xhr.response);
+            parsedJson.push(JSON.parse(xhr.response));
+
+//            updateLines(parsedJson);
+            updateNew(parsedJson, 'bar')
+        }
+
+        function onLineUpdate() {
+            d3.select("svg").remove();
+            var start = document.getElementById('yearStart');
+            var end = document.getElementById('yearEnd');
+            var country = document.getElementById('Country');
+            console.log('Start Year: ' + start.options[start.selectedIndex].value);
+            console.log('End Year: ' + end.options[end.selectedIndex].value);
+            console.log('country: ' + country.options[country.selectedIndex].value);
+
+            var yearStart = start.options[start.selectedIndex].value;
+            var yearEnd = end.options[end.selectedIndex].value;
+            var cntryName = country.options[country.selectedIndex].value;
+
+            var parsedJson = [];
+
+
+            var xhr = new XMLHttpRequest();
+            var reqStr = "http://localhost:5000/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart+ "&yearEnd=" + yearEnd;
+            xhr.open("GET", reqStr, false);
+            xhr.send();
+
+
+//            console.log(xhr.response);
+            parsedJson.push(JSON.parse(xhr.response));
+
+            console.log(parsedJson);
+
+//            updateLines(parsedJson);
+            updateNew(parsedJson, 'line')
+        }
+
+        function updateNew(jsonToWorkWith, typeOfChart) {
+//            var jsonData = [{"Year":"1993","Val":1609097165},{"Year":"1994","Val":2008375805},{"Year":"1995","Val":2719331992},{"Year":"1996","Val":3184663984},{"Year":"1997","Val":3844892960},{"Year":"1998","Val":4259555016}];
+
+            var countryName = '';
+
+
+            var isrYears = ['Year'];
+            var isrVals = [];
+
+            jsonToWorkWith.forEach(function(d) {
+                countryName = d.countryLabel;
+                isrVals.push(countryName);
+                d.x.forEach(function(j) {
+                    if(typeof j === 'string') {
+                        isrYears.push(parseInt(j));
+                    }
+                    else {
+                        isrYears.push(j);
+                    }
+                });
+                d.y.forEach(function(j) {
+                    if(j == null) {
+                        isrVals.push(0);
+                    }
+                    else {
+                        isrVals.push(j);
+                    }
+                });
+//                isrYears.push(d.Year);
+//                isrVals.push(d.Val);
+            })
+
+            console.log(isrYears);
+            console.log(isrVals);
+            console.log(typeof countryName);
+
+//            var xsData = {
+//                'ISR': 'Year'
+////                'data2': 'x2',
+//            };
+
+            var xsData = {};
+            xsData[countryName] = 'Year';
+            var chart = c3.generate({
+                data: {
+                    xs: xsData,
+                    columns: [isrVals,isrYears
+
+                    ],
+                    type: typeOfChart,
+                }
+            });
         }
 
     </script>

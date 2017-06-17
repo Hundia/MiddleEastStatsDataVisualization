@@ -43,7 +43,7 @@ app.get('/getCountriesHiTechInfoLineCharted', function (req, res) {
     var country = req.query.country;
     console.log('Got request for Hi Tech info for country: ' + country + ' from year: ' + yearStart + ' to year:' + yearEnd);
 
-    var finalRes = {'label': country, 'x':[],'y':[]};
+    var finalRes = {'countryLabel': country, 'x':[],'y':[]};
 
     for (var i = yearStart; i <= yearEnd; i++) {
         var queryRes = serverInfoApi.getCountryHiTechInfoByYear('TX.VAL.TECH.CD', i, country);
@@ -60,13 +60,6 @@ app.get('/getCountriesHiTechInfoLineCharted', function (req, res) {
     res.end(queryResStr);
 
 })
-
-
-// /* serves all the static files */
-// app.get(/^(.+)$/, function(req, res){
-//     console.log('static file request : ' + req.params);
-//     res.sendfile( '../' + req.params[0]);
-// });
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {

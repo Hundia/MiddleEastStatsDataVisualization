@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test C3</title>
+    <!-- Load c3.css -->
+    <link href="../c3-0.4.13/c3.css" rel="stylesheet">
+
+    <!-- Load d3.js and c3.js -->
+    <script src="../c3-0.4.13/d3/d3.min.js"></script>
+    <script src="../c3-0.4.13/c3.min.js"></script>
+
+</head>
+<body>
+<div id="chart"></div>
+
+<script>
+    var jsonData = [{"Year":"1993","Val":1609097165},{"Year":"1994","Val":2008375805},{"Year":"1995","Val":2719331992},{"Year":"1996","Val":3184663984},{"Year":"1997","Val":3844892960},{"Year":"1998","Val":4259555016}];
+
+    var isrYears = ['Year'];
+    var isrVals = ['ISR'];
+    jsonData.forEach(function(d) {
+        isrYears.push(d.Year);
+        isrVals.push(d.Val);
+    })
+    console.log(isrYears);
+    console.log(isrVals);
+    var xsData = {
+        'ISR': 'Year',
+//                'data2': 'x2',
+    };
+    var chart = c3.generate({
+
+        data: {
+            xs: xsData,
+            columns: [isrVals,isrYears
+            ]
+        }
+    });
+</script>
+</body>
+</html>
