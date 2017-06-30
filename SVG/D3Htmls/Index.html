@@ -7,8 +7,15 @@
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Select stuff extention for bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/i18n/defaults-*.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+
 
     <link href="./c3/c3.css" rel="stylesheet">
 
@@ -42,35 +49,48 @@
 
 <body>
 
-    <p>Hi there Peter, Please do Select the years properly, not protecting the order for now</p>
 
-    <div class="form-group">
-        <label for="yearStart">Starting year:</label>
-        <select class="form-control" id="yearStart">
+    <div class="container">
+        <h1>Hi there Peter, Please do Select the years properly, not protecting the order for now</h1>
 
-        </select>
+        <div class="row">
+            <div class="form-group col-sm-2">
+                <label for="yearStart">Starting year:</label>
+                <select class="form-control" id="yearStart">
+
+                </select>
+            </div>
+
+            <div class="form-group col-sm-2">
+                <label for="yearEnd">End Year:</label>
+                <select class="form-control" id="yearEnd">
+
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-2">
+                <label for="Country">Country:</label>
+                <select class="selectpicker" id="Country" multiple>
+                    <option>ISR</option>
+                    <option>EGY</option>
+                    <option>JOR</option>
+                    <option>LBN</option>
+                    <option>PSE</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-primary" onclick="onNewBarUpdate()">Update with Bars..!</button>
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-primary" onclick="onLineUpdate()">Update with Lines..!</button>
+            </div>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label for="yearEnd">End Year:</label>
-        <select class="form-control" id="yearEnd">
-
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="Country">Country:</label>
-        <select class="form-control" id="Country">
-            <option>ISR</option>
-            <option>EGY</option>
-            <option>JOR</option>
-            <option>LBN</option>
-            <option>PSE</option>
-        </select>
-    </div>
-
-    <button type="button" class="btn btn-primary" onclick="onNewBarUpdate()">Update with Bars..!</button>
-    <button type="button" class="btn btn-primary" onclick="onLineUpdate()">Update with Lines..!</button>
 
 
     <p>High-technology exports (In Millions US$)</p>
@@ -102,6 +122,7 @@
             console.log('country: ' + country.options[country.selectedIndex].value);
         }
 
+        //  --- Deprecated..! ---
         function Year(data) {
 
             var xy_chart = d3_xy_chart()
@@ -259,12 +280,7 @@
             }
         }
 
-
-
-
-
-
-
+        //  --- Deprecated..! ---
         function updateBars(jsonToWorkWith) {
             // set the dimensions of the canvas
             var margin = {top: 20, right: 20, bottom: 70, left: 40},
@@ -346,6 +362,7 @@
 
         }
 
+        //  --- Deprecated..! ---
         function onBarUpdate() {
             var jsonsToParse = [];
             d3.select("svg").remove();
@@ -436,42 +453,42 @@
             var country = document.getElementById('Country');
             console.log('Start Year: ' + start.options[start.selectedIndex].value);
             console.log('End Year: ' + end.options[end.selectedIndex].value);
-            console.log('country: ' + country.options[country.selectedIndex].value);
 
             var yearStart = start.options[start.selectedIndex].value;
             var yearEnd = end.options[end.selectedIndex].value;
-            var cntryName = country.options[country.selectedIndex].value;
+//            var cntryName = country.options[country.selectedIndex].value;
+            var selectedCountries = [];
 
             var parsedJson = [];
             var json2parse = [];
 
-            var xhr = new XMLHttpRequest();
-            var reqStr = "http://localhost:5000/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart+ "&yearEnd=" + yearEnd;
-            xhr.open("GET", reqStr, false);
-            xhr.send();
 
-            parsedJson.push(JSON.parse(xhr.response));
+            console.log('Selected Countries:');
+            for (i = 0; i < country.length; i++) {
+                if(country.options[i].selected) {
+                    selectedCountries.push(country.options[i].value);
+                    console.log(country.options[i].value);
+                }
+            }
 
-//            console.log(parsedJson);
-            json2parse.push(parsedJson);
+            console.log('Selected length: ' + selectedCountries.length);
+            for (i = 0; i < selectedCountries.length; i++) {
+                cntryName = selectedCountries[i];
+                xhr = new XMLHttpRequest();
+                reqStr = "http://localhost:5000/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart+ "&yearEnd=" + yearEnd;
+                xhr.open("GET", reqStr, false);
+                xhr.send();
 
-
-            //  Temporary
-            // -------
-
-            cntryName = 'JOR';
-            xhr = new XMLHttpRequest();
-            reqStr = "http://localhost:5000/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart+ "&yearEnd=" + yearEnd;
-            xhr.open("GET", reqStr, false);
-            xhr.send();
-
-            parsedJson = [];
-            parsedJson.push(JSON.parse(xhr.response));
+                parsedJson = [];
+                parsedJson.push(JSON.parse(xhr.response));
 
 //            console.log(parsedJson);
-            json2parse.push(parsedJson);
+                json2parse.push(parsedJson);
+            }
 
-            //  End of temporary
+//            console.log(parsedJson);
+//            json2parse.push(parsedJson);
+
             updateNew(json2parse, 'line');
         }
 
