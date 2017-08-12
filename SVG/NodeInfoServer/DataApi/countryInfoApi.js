@@ -15,9 +15,13 @@ console.log('Name of ISR: ' + metaApi.countryCodeToName('ISR'));
 //
 
 
+// var queryRes = getCountryInfoByYear('SP.DYN.IMRT.IN', 2012, 'ISR');
+// var queryRes = getCountryInfoByYear('TX.VAL.TECH.MF.ZS', 1989, 'ISR');
+
+// console.log(queryRes);
 
 // Given a query indicator code ,year and a country code, return the corresponding value
-function getCountryHiTechInfoByYear(indicatorCode, year, countryCode) {
+function getCountryInfoByYear(indicatorCode, year, countryCode) {
     //  TODO - Perhaps validate stuff in the future...
     var res = {};
 
@@ -25,8 +29,9 @@ function getCountryHiTechInfoByYear(indicatorCode, year, countryCode) {
         // console.log(i);
         var line = metaJson[i];
 
-        if(line['Indicator Code'] == 'TX.VAL.TECH.CD' && line['Country Code'] == countryCode)
+        if(line['Indicator Code'] == indicatorCode && line['Country Code'] == countryCode)
         {
+            console.log(line);
             // res['Country'] = line['Country Name'];
             res['Year'] = year;
             res['Val'] = parseInt(line[year]);
@@ -77,7 +82,7 @@ module.exports = {
     getHiTechInfoByYear: function (indicatorCode, year) {
         return getHiTechInfoByYear(indicatorCode, year);
     },
-    getCountryHiTechInfoByYear: function (indicatorCode, year, countryCode) {
-        return getCountryHiTechInfoByYear(indicatorCode, year, countryCode);
+    getCountryInfoByYear: function (indicatorCode, year, countryCode) {
+        return getCountryInfoByYear(indicatorCode, year, countryCode);
     }
 };

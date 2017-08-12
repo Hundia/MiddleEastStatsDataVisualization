@@ -46,10 +46,11 @@ app.get('/getCountriesHiTechInfoLineCharted', function (req, res) {
     var finalRes = {'countryLabel': country, 'x':[],'y':[]};
 
     for (var i = yearStart; i <= yearEnd; i++) {
-        var queryRes = serverInfoApi.getCountryHiTechInfoByYear('TX.VAL.TECH.CD', i, country);
+        var queryRes = serverInfoApi.getCountryInfoByYear('TX.VAL.FOOD.ZS.UN', i, country);
         console.log(queryRes);
 
-        finalRes['y'].push(queryRes.Val/1000000);
+        // finalRes['y'].push(queryRes.Val/1000000);
+        finalRes['y'].push(queryRes.Val);
         finalRes['x'].push(queryRes.Year);
         // var queryResStr = JSON.stringify(queryRes);
         // console.log("Res: " + queryResStr);

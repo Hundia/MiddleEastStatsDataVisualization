@@ -1,0 +1,28 @@
+.c3-xgrid-line line {
+    stroke: blue;
+}
+.c3-xgrid-line.grid4 line {
+    stroke: pink;
+}
+.c3-xgrid-line.grid4 text {
+    fill: pink;
+}
+.c3-ygrid-line line {
+    stroke: orange;
+}
+.c3-ygrid-line.grid800 line {
+    stroke: green;
+}
+.c3-ygrid-line.grid800 text {
+    fill: green;
+}
+.c3-axis-y .tick {
+    fill: orange;
+    font-size: 12px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.c3-axis-x .tick {
+    fill: orange;
+    font-size: 12px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}

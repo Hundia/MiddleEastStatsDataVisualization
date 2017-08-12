@@ -111,7 +111,10 @@
             }));
         }
 
+        $('#yearStart').val('1994');
+        $('#yearEnd').val('2015');
 
+        $('#Country').val('ISR').attr('selected', true);
 
         function printUpdate() {
             var start = document.getElementById('yearStart');
@@ -401,52 +404,15 @@
         }
 
         function onNewBarUpdate() {
-            d3.select("svg").remove();
-            var start = document.getElementById('yearStart');
-            var end = document.getElementById('yearEnd');
-            var country = document.getElementById('Country');
-            console.log('Start Year: ' + start.options[start.selectedIndex].value);
-            console.log('End Year: ' + end.options[end.selectedIndex].value);
-            console.log('country: ' + country.options[country.selectedIndex].value);
-
-            var yearStart = start.options[start.selectedIndex].value;
-            var yearEnd = end.options[end.selectedIndex].value;
-            var cntryName = country.options[country.selectedIndex].value;
-
-            var parsedJson = [];
             var json2parse = [];
 
-            var xhr = new XMLHttpRequest();
-            var reqStr = "http://localhost:5000/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart+ "&yearEnd=" + yearEnd;
-            xhr.open("GET", reqStr, false);
-            xhr.send();
-
-            parsedJson.push(JSON.parse(xhr.response));
-
-//            console.log(parsedJson);
-            json2parse.push(parsedJson);
-
-
-            //  Temporary
-            // -------
-
-            cntryName = 'JOR';
-            xhr = new XMLHttpRequest();
-            reqStr = "http://localhost:5000/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart+ "&yearEnd=" + yearEnd;
-            xhr.open("GET", reqStr, false);
-            xhr.send();
-
-            parsedJson = [];
-            parsedJson.push(JSON.parse(xhr.response));
-
-//            console.log(parsedJson);
-            json2parse.push(parsedJson);
+            buildJsonFromData(json2parse);
 
             //  End of temporary
             updateNew(json2parse, 'bar');
         }
 
-        function onLineUpdate() {
+        function buildJsonFromData(json2parse) {
             d3.select("svg").remove();
             var start = document.getElementById('yearStart');
             var end = document.getElementById('yearEnd');
@@ -460,12 +426,11 @@
             var selectedCountries = [];
 
             var parsedJson = [];
-            var json2parse = [];
 
 
             console.log('Selected Countries:');
             for (i = 0; i < country.length; i++) {
-                if(country.options[i].selected) {
+                if (country.options[i].selected) {
                     selectedCountries.push(country.options[i].value);
                     console.log(country.options[i].value);
                 }
@@ -475,7 +440,7 @@
             for (i = 0; i < selectedCountries.length; i++) {
                 cntryName = selectedCountries[i];
                 xhr = new XMLHttpRequest();
-                reqStr = "http://localhost:5000/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart+ "&yearEnd=" + yearEnd;
+                reqStr = "http://localhost:5000/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart + "&yearEnd=" + yearEnd;
                 xhr.open("GET", reqStr, false);
                 xhr.send();
 
@@ -485,6 +450,11 @@
 //            console.log(parsedJson);
                 json2parse.push(parsedJson);
             }
+        }
+        function onLineUpdate() {
+            var json2parse = [];
+
+            buildJsonFromData(json2parse);
 
 //            console.log(parsedJson);
 //            json2parse.push(parsedJson);
@@ -496,7 +466,7 @@
 //            var jsonData = [{"Year":"1993","Val":1609097165},{"Year":"1994","Val":2008375805},{"Year":"1995","Val":2719331992},{"Year":"1996","Val":3184663984},{"Year":"1997","Val":3844892960},{"Year":"1998","Val":4259555016}];
 
             var xsData = {};
-            var data2Gen = {data:{ xs: {}, columns: [], type: typeOfChart}};
+            var data2Gen = {data:{ xs: {}, columns: [], type: typeOfChart},subchart: {show: true}, zoom: {enabled: true}};
 
             for (i = 0; i < jsonToWorkWith.length; i++) {
                 var countryName = '';
