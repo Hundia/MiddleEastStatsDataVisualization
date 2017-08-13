@@ -16,8 +16,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/i18n/defaults-*.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
 
-    <script type="text/javascript" src="./js/timeline.js"></script>
-    <link rel="stylesheet" href="../node_modules/timelinejs-slider/dist/css/timeline.min.css" />
 
     <link href="./c3/c3.css" rel="stylesheet">
 
@@ -44,9 +42,6 @@
             stroke: #000;
             shape-rendering: crispEdges;
         }
-        .row {
-            margin-bottom: 35px;
-        }
     </style>
 
 </head>
@@ -58,55 +53,34 @@
     <div class="container">
         <h1>Hi there Peter, Please do Select the years properly, not protecting the order for now</h1>
 
-        <!--<div class="row">-->
-            <!--<div class="form-group col-sm-2">-->
-                <!--<label for="yearStart">Starting year:</label>-->
-                <!--<select class="form-control" id="yearStart">-->
-
-                <!--</select>-->
-            <!--</div>-->
-
-            <!--<div class="form-group col-sm-2">-->
-                <!--<label for="yearEnd">End Year:</label>-->
-                <!--<select class="form-control" id="yearEnd">-->
-
-                <!--</select>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="row">-->
-            <!--<div class="form-group col-sm-2">-->
-                <!--<label for="Country">Country:</label>-->
-                <!--<select class="selectpicker" id="Country" multiple>-->
-                    <!--<option>ISR</option>-->
-                    <!--<option>EGY</option>-->
-                    <!--<option>JOR</option>-->
-                    <!--<option>LBN</option>-->
-                    <!--<option>PSE</option>-->
-                <!--</select>-->
-            <!--</div>-->
-        <!--</div>-->
         <div class="row">
+            <div class="form-group col-sm-2">
+                <label for="yearStart">Starting year:</label>
+                <select class="form-control" id="yearStart">
 
-            <div class="timeline-container timeline-theme-1 row">
-                <div class="timeline js-timeline">
-                    <div data-time="2017" id="eli1">
-                        your content or markup
-                    </div>
-                    <div data-time="2016" id="eli2">
-                        your content or markup
-                    </div>
-                    <div data-time="2015">
-                        your content or markup
-                    </div>
-                    <div data-time="2014">
-                        your content or markup
-                    </div>
-                    <div data-time="2013">
-                        your content or markup
-                    </div>
-                </div>
+                </select>
+            </div>
+
+            <div class="form-group col-sm-2">
+                <label for="yearEnd">End Year:</label>
+                <select class="form-control" id="yearEnd">
+
+                </select>
             </div>
         </div>
+        <div class="row">
+            <div class="form-group col-sm-2">
+                <label for="Country">Country:</label>
+                <select class="selectpicker" id="Country" multiple>
+                    <option>ISR</option>
+                    <option>EGY</option>
+                    <option>JOR</option>
+                    <option>LBN</option>
+                    <option>PSE</option>
+                </select>
+            </div>
+        </div>
+
         <div class="row">
 
             <div class="col-sm-2">
@@ -126,74 +100,21 @@
 
     <script>
 
-        function setArabIsraeliWar1948() {
-            var start = 1948;
-            var end = 1951;
-            var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
+        for (var i = 1980; i < 2016; i++) {
+            $('#yearStart').append($('<option>', {
+                value: i,
+                text: i
+            }));
+            $('#yearEnd').append($('<option>', {
+                value: i,
+                text: i
+            }));
         }
 
-        function setSuezCrisis1956() {
-            var start = 1954;
-            var end = 1958;
-            var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
-        }
+        $('#yearStart').val('1994');
+        $('#yearEnd').val('2015');
 
-        function setSixDaysWar1967() {
-            var start = 1965;
-            var end = 1969;
-            var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
-        }
-
-        function setWarOfAttrition1968() {
-            var start = 1967;
-            var end = 1970;
-            var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
-        }
-
-        function setWarOfYomKipur1973() {
-            var start = 1971;
-            var end = 1975;
-            var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
-        }
-
-        function setLebanonWar1982() {
-            var start = 1971;
-            var end = 1975;
-            var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
-        }
-
-        setArabIsraeliWar1948();
-
-        $('.js-timeline').Timeline();
-
-        $( "#2017" ).click(function() {
-            alert( "2017" );
-        });
-        $( "#2016" ).click(function() {
-            alert( "2016" );
-        });
-        $( "#2015" ).click(function() {
-            alert( "2015" );
-        });
-        $( "#2014" ).click(function() {
-            alert( "2014" );
-        });
-
-//        for (var i = 1980; i < 2016; i++) {
-//            $('#yearStart').append($('<option>', {
-//                value: i,
-//                text: i
-//            }));
-//            $('#yearEnd').append($('<option>', {
-//                value: i,
-//                text: i
-//            }));
-//        }
-//
-//        $('#yearStart').val('1994');
-//        $('#yearEnd').val('2015');
-//
-//        $('#Country').val('ISR').attr('selected', true);
+        $('#Country').val('ISR').attr('selected', true);
 
         function printUpdate() {
             var start = document.getElementById('yearStart');
@@ -493,16 +414,16 @@
 
         function buildJsonFromData(json2parse) {
             d3.select("svg").remove();
-//            var start = document.getElementById('yearStart');
-//            var end = document.getElementById('yearEnd');
-//            var country = document.getElementById('Country');
+            var start = document.getElementById('yearStart');
+            var end = document.getElementById('yearEnd');
+            var country = document.getElementById('Country');
             console.log('Start Year: ' + start.options[start.selectedIndex].value);
             console.log('End Year: ' + end.options[end.selectedIndex].value);
 
             var yearStart = start.options[start.selectedIndex].value;
             var yearEnd = end.options[end.selectedIndex].value;
 //            var cntryName = country.options[country.selectedIndex].value;
-
+            var selectedCountries = [];
 
             var parsedJson = [];
 
