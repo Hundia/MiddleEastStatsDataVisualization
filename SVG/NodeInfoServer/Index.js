@@ -30,6 +30,8 @@ app.get('/getCountryHiTechInfo', function (req, res) {
     console.log('Got request for Hi Tech info for country: ' + country + ' in year: ' + year);
     var queryRes = serverInfoApi.getCountryHiTechInfoByYear('TX.VAL.TECH.CD', year, country);
     var queryResStr = JSON.stringify(queryRes);
+
+
     // console.log("Res: " + queryResStr);
     res.end(queryResStr);
 
@@ -41,12 +43,13 @@ app.get('/getCountriesHiTechInfoLineCharted', function (req, res) {
     var yearStart = req.query.yearStart;
     var yearEnd = req.query.yearEnd;
     var country = req.query.country;
+    var infoLabel = req.query.infoLabel;
     console.log('Got request for Hi Tech info for country: ' + country + ' from year: ' + yearStart + ' to year:' + yearEnd);
 
     var finalRes = {'countryLabel': country, 'x':[],'y':[]};
 
     for (var i = yearStart; i <= yearEnd; i++) {
-        var queryRes = serverInfoApi.getCountryInfoByYear('TX.VAL.FOOD.ZS.UN', i, country);
+        var queryRes = serverInfoApi.getCountryInfoByYear(infoLabel, i, country);
         console.log(queryRes);
 
         // finalRes['y'].push(queryRes.Val/1000000);
@@ -58,6 +61,8 @@ app.get('/getCountriesHiTechInfoLineCharted', function (req, res) {
 
     var queryResStr = JSON.stringify(finalRes);
     // console.log("Res: " + queryResStr);
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.end(queryResStr);
 
 })
