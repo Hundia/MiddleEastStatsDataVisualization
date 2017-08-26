@@ -7,6 +7,7 @@ var serverInfoApi = require('./DataApi/countryInfoApi.js');
 
 
 app.use(express.static('../D3Htmls'), express.static('../node_modules'));
+
 /* serves main page */
 app.get("/", function(req, res) {
     res.sendFile('../D3Htmls/Index.html', { root: '../D3Htmls' });

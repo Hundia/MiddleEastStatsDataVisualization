@@ -16,6 +16,7 @@
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/i18n/defaults-*.min.js"></script>-->
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>-->
 
+    <script type="text/javascript" src="/Dataset/Indicator.json"></script>
 
     <script type="text/javascript" src="./js/timeline.js"></script>
     <link rel="stylesheet" href="/timelinejs-slider/dist/css/timeline.min.css" />
@@ -47,6 +48,10 @@
             }
             .row {
                 margin-bottom: 35px;
+            }
+            .graph {
+                margin-bottom: 150px;
+                /*margin-right: 15px;*/
             }
     </style>
 
@@ -137,6 +142,38 @@
         fieldToIndicatorsTxtMap['military'] = "../metadata_indicators/military.txt";
         fieldToIndicatorsTxtMap['population'] = "../metadata_indicators/population.txt";
         fieldToIndicatorsTxtMap['science_education'] = "../metadata_indicators/science_education.txt";
+
+
+        function getIndicatorsByFieldOfInterest(field) {
+            var indicators = returnTextFileLines(fieldToIndicatorsTxtMap[field]);
+            return indicators;
+        }
+
+        function CSVtoArray(text) {
+            var re_valid = /^\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*(?:,\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*)*$/;
+            var re_value = /(?!\s*$)\s*(?:'([^'\\]*(?:\\[\S\s][^'\\]*)*)'|"([^"\\]*(?:\\[\S\s][^"\\]*)*)"|([^,'"\s\\]*(?:\s+[^,'"\s\\]+)*))\s*(?:,|$)/g;
+            // Return NULL if input string is not well formed CSV string.
+            if (!re_valid.test(text)) return null;
+            var a = [];                     // Initialize array to receive values.
+            text.replace(re_value, // "Walk" the string using replace with callback.
+                    function(m0, m1, m2, m3) {
+                        // Remove backslash from \' in single quoted values.
+                        if      (m1 !== undefined) a.push(m1.replace(/\\'/g, "'"));
+                        // Remove backslash from \" in double quoted values.
+                        else if (m2 !== undefined) a.push(m2.replace(/\\"/g, '"'));
+                        else if (m3 !== undefined) a.push(m3);
+                        return ''; // Return empty string.
+                    });
+            // Handle special case of empty last value.
+            if (/,\s*$/.test(text)) a.push('');
+            return a;
+        };
+
+//        var indicatorInfoTxtLines = returnTextFileLines('/Dataset/Indicator.json');
+        var request = new XMLHttpRequest();
+        request.open("GET", "/Dataset/Indicator.json", false);
+        request.send(null)
+        var indicatorInfoJson = JSON.parse(request.responseText);
 
 
         function setSixDaysWar1967() {
@@ -361,7 +398,9 @@
                     {
                         var allText = rawFile.responseText;
                         var lines = allText.split('\n');
+                        console.log("number of lines: " + lines.length)
                         for(var i = 0;i < lines.length;i++){
+//                            console.log('eli: ' + lines[i])
                             indicators.push(lines[i]);
                         }
                     }
@@ -374,10 +413,7 @@
 
 
 
-        function getIndicatorsByFieldOfInterest(field) {
-            var indicators = returnTextFileLines(fieldToIndicatorsTxtMap[field]);
-            return indicators;
-        }
+
 
         function onNewBarUpdateWithYears(start, end, countries) {
             var json2parse = [];
@@ -387,15 +423,25 @@
             $(".graph").remove();
 
             var chartIndex = 0;
+
             //  Some sweet lambda's..
             indicators.forEach( indicator => {
+                var miniHeader = "";
+                var explenation = "";
                 console.log('indicator: ' + indicator);
+                for(i = 0; i < indicatorInfoJson.length; i++){
+                    if(indicatorInfoJson[i]["INDICATOR_CODE"] == indicator) {
+                        miniHeader = indicatorInfoJson[i]["INDICATOR_NAME"];
+                        explenation = indicatorInfoJson[i]["SOURCE_NOTE"];
+                        break;
+                    }
+                }
                 buildJsonFromDataWithoutOptions(json2parse, start, end, countries, indicator);
 
 //                console.log('Done with json..');
                 //  End of temporary
                 var chartId = 'chart' + chartIndex;
-                updateNew(json2parse, 'line', chartId);
+                updateNew(json2parse, 'line', chartId, miniHeader, explenation);
                 chartIndex++;
             });
 
@@ -403,9 +449,9 @@
         }
 
 
-        function updateNew(jsonToWorkWith, typeOfChart, chartId) {
+        function updateNew(jsonToWorkWith, typeOfChart, chartId, miniHeader, explenation) {
 
-            $("#graphs_container").append('<div class="col-sm-6 graph"> <h5>Hi whats up..!</h5> <div id=' + chartId + '></div> </div>');
+            $("#graphs_container").append('<div class="col-sm-6 graph"> <h4>' + miniHeader + '</h4> <div id=' + chartId + '></div> <p>' + explenation + '</p> </div>');
 
             var xsData = {};
             //  Create an actual chart id with the # jquery id mark
@@ -476,9 +522,6 @@
 
         setUpListeners();
         setSixDaysWar1967();
-
-
-
 
 
     </script>

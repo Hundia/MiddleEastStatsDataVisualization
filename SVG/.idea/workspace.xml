@@ -24,66 +24,35 @@
       <file leaf-file-name="Index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/D3Htmls/Index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="387" column="0" selection-start-line="387" selection-start-column="0" selection-end-line="387" selection-end-column="0" />
+            <state relative-caret-position="214">
+              <caret line="453" column="63" selection-start-line="453" selection-start-column="63" selection-end-line="453" selection-end-column="63" />
               <folding>
-                <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="e#3825#3869#0" expanded="false" />
-                <element signature="e#5381#5587#0" expanded="false" />
-                <element signature="e#5626#5832#0" expanded="false" />
-                <element signature="e#5874#6080#0" expanded="false" />
-                <element signature="e#6123#6329#0" expanded="false" />
-                <element signature="e#6374#6580#0" expanded="false" />
-                <element signature="e#6616#6822#0" expanded="false" />
-                <element signature="e#6875#7081#0" expanded="false" />
-                <element signature="e#7133#7339#0" expanded="false" />
-                <element signature="e#7375#8742#0" expanded="false" />
-                <element signature="e#8794#10407#0" expanded="false" />
-                <element signature="e#10504#11690#0" expanded="false" />
-                <element signature="e#11724#11939#0" expanded="false" />
-                <element signature="e#11992#12728#0" expanded="false" />
+                <element signature="e#4013#4057#0" expanded="false" />
+                <element signature="e#5090#5214#0" expanded="false" />
+                <element signature="e#5250#6587#0" expanded="false" />
+                <element signature="e#7412#7618#0" expanded="false" />
+                <element signature="e#7657#7863#0" expanded="false" />
+                <element signature="e#7905#8111#0" expanded="false" />
+                <element signature="e#8154#8360#0" expanded="false" />
+                <element signature="e#8405#8611#0" expanded="false" />
+                <element signature="e#8647#8853#0" expanded="false" />
+                <element signature="e#8906#9112#0" expanded="false" />
+                <element signature="e#9164#9370#0" expanded="false" />
+                <element signature="e#10825#12438#0" expanded="false" />
+                <element signature="e#13755#13970#0" expanded="false" />
+                <element signature="e#14023#14893#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="population.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/D3Htmls/metadata_indicators/population.txt">
+      <file leaf-file-name="Indicator.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Datasets/Indicator.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="financial.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/D3Htmls/metadata_indicators/financial.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="military.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/D3Htmls/metadata_indicators/military.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="science_education.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/D3Htmls/metadata_indicators/science_education.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+            <state relative-caret-position="15">
+              <caret line="1" column="117" selection-start-line="1" selection-start-column="106" selection-end-line="1" selection-end-column="117" />
               <folding />
             </state>
           </provider>
@@ -93,7 +62,7 @@
         <entry file="file://$PROJECT_DIR$/NodeInfoServer/Index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="8" column="57" selection-start-line="8" selection-start-column="57" selection-end-line="8" selection-end-column="57" />
+              <caret line="8" column="71" selection-start-line="8" selection-start-column="71" selection-end-line="8" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -144,7 +113,6 @@
         <option value="$PROJECT_DIR$/D3Htmls/js/timeline.js" />
         <option value="$PROJECT_DIR$/D3Htmls/TestTimeLine.html" />
         <option value="$PROJECT_DIR$/D3Htmls/css/timeline.min.css" />
-        <option value="$PROJECT_DIR$/NodeInfoServer/Index.js" />
         <option value="$PROJECT_DIR$/D3Htmls/js/countryHandling.js" />
         <option value="$PROJECT_DIR$/D3Htmls/js/drawingFunctions.js" />
         <option value="$PROJECT_DIR$/D3Htmls/metadata_indicators/financial" />
@@ -152,6 +120,8 @@
         <option value="$PROJECT_DIR$/D3Htmls/metadata_indicators/population.txt" />
         <option value="$PROJECT_DIR$/D3Htmls/metadata_indicators/military" />
         <option value="$PROJECT_DIR$/D3Htmls/metadata_indicators/science_education" />
+        <option value="$PROJECT_DIR$/NodeInfoServer/Index.js" />
+        <option value="$PROJECT_DIR$/D3Htmls/Dataset/indicatorInfo.csv" />
         <option value="$PROJECT_DIR$/D3Htmls/Index.html" />
       </list>
     </option>
@@ -235,6 +205,38 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="Datasets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SVG" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SVG" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Datasets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="csv" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SVG" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SVG" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="D3Htmls" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -253,25 +255,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="metadata_indicators" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SVG" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SVG" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="D3Htmls" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="Dataset" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -295,11 +279,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/D3Htmls/Dataset" />
       <recent name="$PROJECT_DIR$/D3Htmls/css" />
       <recent name="$PROJECT_DIR$/D3Htmls" />
       <recent name="$PROJECT_DIR$/D3Htmls/js" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/D3Htmls/c3" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/SvgD3Studies" />
@@ -430,18 +414,18 @@
       <workItem from="1501019153046" duration="3041000" />
       <workItem from="1502054084253" duration="28000" />
       <workItem from="1502548750032" duration="4871000" />
-      <workItem from="1503737766086" duration="7239000" />
+      <workItem from="1503737766086" duration="10274000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88604000" />
+    <option name="totallyTimeSpent" value="91639000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="52" y="23" width="1830" height="999" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18518518" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30016583" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32845894" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -491,7 +475,7 @@
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="8" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="NodeJSConfigurationType">
@@ -500,9 +484,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/NodeInfoServer/CsvParser.js" />
-    <entry file="file://$PROJECT_DIR$/Datasets/Metadata_Indicator_API_Download_DS2_en_csv_v2_285242.csv" />
-    <entry file="file://$PROJECT_DIR$/Datasets/API_Download_DS2_en_csv_v2_285242.csv" />
     <entry file="file://$PROJECT_DIR$/Datasets/Metadata_Country_API_Download_DS2_en_csv_v2_285242.csv" />
     <entry file="file://$PROJECT_DIR$/Maps.html" />
     <entry file="file://$PROJECT_DIR$/Datasets/meta.json">
@@ -516,13 +497,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Datasets/Indicator.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="125" selection-start-line="5" selection-start-column="125" selection-end-line="5" selection-end-column="125" />
         </state>
       </provider>
     </entry>
@@ -789,10 +763,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/D3Htmls/metadata_indicators/military.txt">
+    <entry file="file://$PROJECT_DIR$/D3Htmls/Dataset/Metadata_Indicator_API_Download_DS2_en_csv_v2_285242.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
+        <state relative-caret-position="75">
+          <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -805,18 +779,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NodeInfoServer/Index.js">
+    <entry file="file://$PROJECT_DIR$/D3Htmls/metadata_indicators/military.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="57" selection-start-line="8" selection-start-column="57" selection-end-line="8" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/D3Htmls/metadata_indicators/population.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+        <state relative-caret-position="105">
+          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -829,28 +795,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/D3Htmls/metadata_indicators/population.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="14" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/D3Htmls/Dataset/indicatorInfo.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="888" selection-start-line="14" selection-start-column="888" selection-end-line="14" selection-end-column="888" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/D3Htmls/Dataset/CountyInfo.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NodeInfoServer/Index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="71" selection-start-line="8" selection-start-column="71" selection-end-line="8" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Datasets/Indicator.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="117" selection-start-line="1" selection-start-column="106" selection-end-line="1" selection-end-column="117" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/D3Htmls/Index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="387" column="0" selection-start-line="387" selection-start-column="0" selection-end-line="387" selection-end-column="0" />
+        <state relative-caret-position="214">
+          <caret line="453" column="63" selection-start-line="453" selection-start-column="63" selection-end-line="453" selection-end-column="63" />
           <folding>
-            <element signature="n#style#0;n#head#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="e#3825#3869#0" expanded="false" />
-            <element signature="e#5381#5587#0" expanded="false" />
-            <element signature="e#5626#5832#0" expanded="false" />
-            <element signature="e#5874#6080#0" expanded="false" />
-            <element signature="e#6123#6329#0" expanded="false" />
-            <element signature="e#6374#6580#0" expanded="false" />
-            <element signature="e#6616#6822#0" expanded="false" />
-            <element signature="e#6875#7081#0" expanded="false" />
-            <element signature="e#7133#7339#0" expanded="false" />
-            <element signature="e#7375#8742#0" expanded="false" />
-            <element signature="e#8794#10407#0" expanded="false" />
-            <element signature="e#10504#11690#0" expanded="false" />
-            <element signature="e#11724#11939#0" expanded="false" />
-            <element signature="e#11992#12728#0" expanded="false" />
+            <element signature="e#4013#4057#0" expanded="false" />
+            <element signature="e#5090#5214#0" expanded="false" />
+            <element signature="e#5250#6587#0" expanded="false" />
+            <element signature="e#7412#7618#0" expanded="false" />
+            <element signature="e#7657#7863#0" expanded="false" />
+            <element signature="e#7905#8111#0" expanded="false" />
+            <element signature="e#8154#8360#0" expanded="false" />
+            <element signature="e#8405#8611#0" expanded="false" />
+            <element signature="e#8647#8853#0" expanded="false" />
+            <element signature="e#8906#9112#0" expanded="false" />
+            <element signature="e#9164#9370#0" expanded="false" />
+            <element signature="e#10825#12438#0" expanded="false" />
+            <element signature="e#13755#13970#0" expanded="false" />
+            <element signature="e#14023#14893#0" expanded="false" />
           </folding>
         </state>
       </provider>
