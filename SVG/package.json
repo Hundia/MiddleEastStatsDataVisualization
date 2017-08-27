@@ -22,6 +22,7 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/EHundia/datavisualizaion#readme",
   "dependencies": {
+    "csv-reader": "^1.0.1",
     "jsonfile": "^3.0.0"
   }
 }

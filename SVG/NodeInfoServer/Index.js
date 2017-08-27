@@ -6,7 +6,8 @@ var serverInfoApi = require('./DataApi/countryInfoApi.js');
 
 
 
-app.use(express.static('../D3Htmls'));
+app.use(express.static('../D3Htmls'), express.static('../node_modules'));
+
 /* serves main page */
 app.get("/", function(req, res) {
     res.sendFile('../D3Htmls/Index.html', { root: '../D3Htmls' });
@@ -44,7 +45,7 @@ app.get('/getCountriesHiTechInfoLineCharted', function (req, res) {
     var yearEnd = req.query.yearEnd;
     var country = req.query.country;
     var infoLabel = req.query.infoLabel;
-    console.log('Got request for Hi Tech info for country: ' + country + ' from year: ' + yearStart + ' to year:' + yearEnd);
+    console.log('Got request for Hi Tech info for country: ' + country + ' from year: ' + yearStart + ' to year:' + yearEnd + " infoLabel: " + infoLabel);
 
     var finalRes = {'countryLabel': country, 'x':[],'y':[]};
 

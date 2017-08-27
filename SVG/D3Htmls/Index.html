@@ -13,11 +13,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Select stuff extention for bootstrap -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/i18n/defaults-*.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/i18n/defaults-*.min.js"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>-->
+
+    <script type="text/javascript" src="/Dataset/Indicator.json"></script>
 
     <script type="text/javascript" src="./js/timeline.js"></script>
-    <link rel="stylesheet" href="../node_modules/timelinejs-slider/dist/css/timeline.min.css" />
+    <link rel="stylesheet" href="/timelinejs-slider/dist/css/timeline.min.css" />
 
     <link href="./c3/c3.css" rel="stylesheet">
 
@@ -26,27 +28,31 @@
     <script src="./c3/c3.min.js"></script>
 
     <style>
-        .bar{
-            fill: steelblue;
-        }
+            .bar{
+                fill: steelblue;
+            }
 
-        .bar:hover{
-            fill: brown;
-        }
+            .bar:hover{
+                fill: brown;
+            }
 
-        .axis {
-            font: 10px sans-serif;
-        }
+            .axis {
+                font: 10px sans-serif;
+            }
 
-        .axis path,
-        .axis line {
-            fill: none;
-            stroke: #000;
-            shape-rendering: crispEdges;
-        }
-        .row {
-            margin-bottom: 35px;
-        }
+            .axis path,
+            .axis line {
+                fill: none;
+                stroke: #000;
+                shape-rendering: crispEdges;
+            }
+            .row {
+                margin-bottom: 35px;
+            }
+            .graph {
+                margin-bottom: 150px;
+                /*margin-right: 15px;*/
+            }
     </style>
 
 </head>
@@ -59,33 +65,6 @@
         <h1 align="center">The war of the middle east</h1>
         <h2 align="center">A song of stats and data</h2>
 
-        <!--<div class="row">-->
-            <!--<div class="form-group col-sm-2">-->
-                <!--<label for="yearStart">Starting year:</label>-->
-                <!--<select class="form-control" id="yearStart">-->
-
-                <!--</select>-->
-            <!--</div>-->
-
-            <!--<div class="form-group col-sm-2">-->
-                <!--<label for="yearEnd">End Year:</label>-->
-                <!--<select class="form-control" id="yearEnd">-->
-
-                <!--</select>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="row">-->
-            <!--<div class="form-group col-sm-2">-->
-                <!--<label for="Country">Country:</label>-->
-                <!--<select class="selectpicker" id="Country" multiple>-->
-                    <!--<option>ISR</option>-->
-                    <!--<option>EGY</option>-->
-                    <!--<option>JOR</option>-->
-                    <!--<option>LBN</option>-->
-                    <!--<option>PSE</option>-->
-                <!--</select>-->
-            <!--</div>-->
-        <!--</div>-->
         <div class="row">
 
             <div class="timeline-container timeline-theme-1 row">
@@ -130,15 +109,8 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-sm-6">
-                <p>High-technology exports (In Millions US$)</p>
-                <div id="chart"></div>
-            </div>
-            <div class="col-sm-6">
-                <p>High-technology exports (In Millions US$)</p>
-                <div id="chart2"></div>
-            </div>
+        <div class="col-sm-12" id="graphs_container">
+
         </div>
 
     </div>
@@ -161,6 +133,48 @@
 //            var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
 //            onNewBarUpdateWithYears(start, end, selectedCountries)(start, end, selectedCountries);
 //        }
+
+
+
+        //  Map out the files
+        var fieldToIndicatorsTxtMap = {};
+        fieldToIndicatorsTxtMap['financial'] = "../metadata_indicators/financial.txt";
+        fieldToIndicatorsTxtMap['military'] = "../metadata_indicators/military.txt";
+        fieldToIndicatorsTxtMap['population'] = "../metadata_indicators/population.txt";
+        fieldToIndicatorsTxtMap['science_education'] = "../metadata_indicators/science_education.txt";
+
+
+        function getIndicatorsByFieldOfInterest(field) {
+            var indicators = returnTextFileLines(fieldToIndicatorsTxtMap[field]);
+            return indicators;
+        }
+
+        function CSVtoArray(text) {
+            var re_valid = /^\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*(?:,\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*)*$/;
+            var re_value = /(?!\s*$)\s*(?:'([^'\\]*(?:\\[\S\s][^'\\]*)*)'|"([^"\\]*(?:\\[\S\s][^"\\]*)*)"|([^,'"\s\\]*(?:\s+[^,'"\s\\]+)*))\s*(?:,|$)/g;
+            // Return NULL if input string is not well formed CSV string.
+            if (!re_valid.test(text)) return null;
+            var a = [];                     // Initialize array to receive values.
+            text.replace(re_value, // "Walk" the string using replace with callback.
+                    function(m0, m1, m2, m3) {
+                        // Remove backslash from \' in single quoted values.
+                        if      (m1 !== undefined) a.push(m1.replace(/\\'/g, "'"));
+                        // Remove backslash from \" in double quoted values.
+                        else if (m2 !== undefined) a.push(m2.replace(/\\"/g, '"'));
+                        else if (m3 !== undefined) a.push(m3);
+                        return ''; // Return empty string.
+                    });
+            // Handle special case of empty last value.
+            if (/,\s*$/.test(text)) a.push('');
+            return a;
+        };
+
+//        var indicatorInfoTxtLines = returnTextFileLines('/Dataset/Indicator.json');
+        var request = new XMLHttpRequest();
+        request.open("GET", "/Dataset/Indicator.json", false);
+        request.send(null)
+        var indicatorInfoJson = JSON.parse(request.responseText);
+
 
         function setSixDaysWar1967() {
             var start = 1965;
@@ -284,15 +298,7 @@
             });
         }
 
-        function onNewBarUpdateWithYears(start, end, countries) {
-            var json2parse = [];
 
-            buildJsonFromDataWithoutOptions(json2parse, start, end, countries);
-
-            console.log('Done with json..');
-            //  End of temporary
-            updateNew(json2parse, 'line', '#chart2');
-        }
 
 
         function buildJsonFromData(json2parse) {
@@ -335,19 +341,19 @@
             }
         }
 
-        function buildJsonFromDataWithoutOptions(json2parse, start, end, countries) {
+        function buildJsonFromDataWithoutOptions(json2parse, start, end, countries, indicator) {
             //d3.select("svg").remove();
 
             var yearStart = start;
             var yearEnd = end;
-            var infoLabel = 'TX.VAL.FOOD.ZS.UN';
+            var infoLabel = indicator;
             var parsedJson = [];
             var selectedCountries = [];
 
-            console.log('Selected Countries:');
+//            console.log('Selected Countries:');
             for (i = 0; i < countries.length; i++) {
                     selectedCountries.push(countries[i]);
-                    console.log('Countries in the conflict: ' + countries[i]);
+//                    console.log('Countries in the conflict: ' + countries[i]);
             }
 
             for (i = 0; i < selectedCountries.length; i++) {
@@ -355,7 +361,7 @@
                 xhr = new XMLHttpRequest();
 
                 reqStr = "http://localhost:5000/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart + "&yearEnd=" + yearEnd + "&infoLabel=" + infoLabel;
-                console.log(reqStr);
+//                console.log(reqStr);
                 xhr.open("GET", reqStr, false);
                 xhr.withCredentials = false;
                 xhr.send();
@@ -363,7 +369,7 @@
                 parsedJson = [];
                 parsedJson.push(JSON.parse(xhr.response));
 
-                console.log(parsedJson);
+//                console.log(parsedJson);
                 json2parse.push(parsedJson);
             }
         }
@@ -379,11 +385,81 @@
             updateNew(json2parse, 'line');
         }
 
-        function updateNew(jsonToWorkWith, typeOfChart, chartId) {
-//            var jsonData = [{"Year":"1993","Val":1609097165},{"Year":"1994","Val":2008375805},{"Year":"1995","Val":2719331992},{"Year":"1996","Val":3184663984},{"Year":"1997","Val":3844892960},{"Year":"1998","Val":4259555016}];
+        function returnTextFileLines(file)
+        {
+            var indicators = [];
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function ()
+            {
+                if(rawFile.readyState === 4)
+                {
+                    if(rawFile.status === 200 || rawFile.status == 0)
+                    {
+                        var allText = rawFile.responseText;
+                        var lines = allText.split('\n');
+                        console.log("number of lines: " + lines.length)
+                        for(var i = 0;i < lines.length;i++){
+//                            console.log('eli: ' + lines[i])
+                            indicators.push(lines[i]);
+                        }
+                    }
+                }
+            }
+            rawFile.send(null);
+            return indicators;
+        }
+
+
+
+
+
+
+        function onNewBarUpdateWithYears(start, end, countries) {
+            var json2parse = [];
+
+            indicators = getIndicatorsByFieldOfInterest('financial');
+
+            $(".graph").remove();
+
+            var chartIndex = 0;
+            //  Some sweet lambda's..
+            indicators.forEach( indicator => {
+                var miniHeader = "";
+                var explenation = "";
+                console.log('indicator: ' + indicator);
+                for(i = 0; i < indicatorInfoJson.length; i++){
+
+                    if(0 == indicator.replace(/[\n\r]/g, '').localeCompare(indicatorInfoJson[i]["INDICATOR_CODE"])) {
+                        miniHeader = indicatorInfoJson[i]["INDICATOR_NAME"];
+                        explenation = indicatorInfoJson[i]["SOURCE_NOTE"];
+                        break;
+                    }
+                }
+
+                console.log('minHeader: ' + miniHeader + ' exp: ' + explenation + 'i: ' + i);
+
+
+                buildJsonFromDataWithoutOptions(json2parse, start, end, countries, indicator);
+
+                var chartId = 'chart' + chartIndex;
+                updateNew(json2parse, 'line', chartId, miniHeader, explenation);
+                chartIndex++;
+            });
+
+
+        }
+
+
+        function updateNew(jsonToWorkWith, typeOfChart, chartId, miniHeader, explenation) {
+
+
+            $("#graphs_container").append('<div class="col-sm-6 graph"> <h4>' + miniHeader + '</h4> <div id=' + chartId + '></div> <p>' + explenation + '</p> </div>');
 
             var xsData = {};
-            var data2Gen = {bindto: chartId, data:{ xs: {}, columns: [], type: typeOfChart},subchart: {show: true}, zoom: {enabled: true}};
+            //  Create an actual chart id with the # jquery id mark
+            var actualChartId = '#' + chartId;
+            var data2Gen = {bindto: actualChartId, data:{ xs: {}, columns: [], type: typeOfChart},subchart: {show: true}, zoom: {enabled: true}};
 
             for (i = 0; i < jsonToWorkWith.length; i++) {
                 var countryName = '';
@@ -394,7 +470,7 @@
 
                 var json2parse = jsonToWorkWith[i];
 
-                console.log(json2parse[0]);
+//                console.log(json2parse[0]);
 
                 json2parse.forEach(function (d) {
                     countryName = d.countryLabel;
@@ -433,7 +509,7 @@
             }
 
 
-            console.log(data2Gen);
+//            console.log(data2Gen);
             var chart = c3.generate(data2Gen);
 
 //        var chart = c3.generate({
@@ -449,6 +525,8 @@
 
         setUpListeners();
         setSixDaysWar1967();
+
+
     </script>
 </body>
 </html>
