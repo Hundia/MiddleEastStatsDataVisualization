@@ -455,6 +455,7 @@
 
             $(".graph").remove();
             var json2parse = [];
+            //  Show the loading progress bar
 
             indicators = getIndicatorsByFieldOfInterest('financial');
             var chartIndex = 0;
@@ -486,7 +487,9 @@
         }
 
         function onNewBarUpdateWithYears(start, end, countries) {
-            showLoading();
+
+
+            $(".graph").removeClass('animated zoomIn');
             if(lastYearSelected < YearSelected) {
                 $(".graph").addClass('animated bounceOutLeft');
             }
@@ -496,21 +499,27 @@
 
             lastYearSelected = YearSelected;
 
-            setTimeout(removeAndRebuildGraphs, 1000,start, end, countries);
-
+            setTimeout(removeAndRebuildGraphs, 1000, start, end, countries);
+            setTimeout(showLoading,600);
+//            showLoading();
 
         }
 
 
+        function animateEnterence(chartId) {
+            $("#" + chartId).addClass('animated zoomIn');
+//            $("#" + chartId).addClass('animated flip');
+        }
+
         function updateNew(jsonToWorkWith, typeOfChart, chartId, miniHeader, explenation) {
 
 
-            $("#graphs_container").append('<div class="col-sm-6 graph"> <h4>' + miniHeader + '</h4> <div id=' + chartId + '></div> <p>' + explenation + '</p> </div>');
+            $("#graphs_container").append('<div class="col-sm-6 graph" id=' + chartId + 'e' + '> <h4>' + miniHeader + '</h4> <div id=' + chartId + '></div> <p>' + explenation + '</p> </div>');
 
             var xsData = {};
             //  Create an actual chart id with the # jquery id mark
             var actualChartId = '#' + chartId;
-            var data2Gen = {bindto: actualChartId, data:{ xs: {}, columns: [], type: typeOfChart},subchart: {show: true}, zoom: {enabled: true}};
+            var data2Gen = {bindto: actualChartId, data:{ xs: {}, columns: [], type: typeOfChart},subchart: {show: false}, zoom: {enabled: true}};
 
             for (i = 0; i < jsonToWorkWith.length; i++) {
                 var countryName = '';
@@ -562,6 +571,8 @@
 
 //            console.log(data2Gen);
             var chart = c3.generate(data2Gen);
+
+            animateEnterence(chartId + 'e');
 
 //        var chart = c3.generate({
 //            data: {
