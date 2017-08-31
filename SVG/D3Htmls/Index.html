@@ -19,7 +19,7 @@
     <script type="text/javascript" src="/Dataset/Indicator.json"></script>
 
     <script type="text/javascript" src="./js/timeline.js"></script>
-    <link rel="stylesheet" href="/timelinejs-slider/dist/css/timeline.min.css" />
+    <link rel="stylesheet" href="./css/timeline.css" />
 
     <link href="./c3/c3.css" rel="stylesheet">
 
@@ -54,6 +54,10 @@
                 /*margin-right: 15px;*/
             }
 
+            .center {
+                margin: auto;
+                width: auto;
+            }
             .loader {
                 margin: 0 auto;
                 border: 16px solid #f3f3f3; /* Light grey */
@@ -81,7 +85,6 @@
         <h2 align="center">A song of stats and data</h2>
 
         <div class="row">
-
             <div class="timeline-container timeline-theme-1 row">
                 <div class="timeline js-timeline">
                     <!--<div data-time="1947">-->
@@ -124,7 +127,19 @@
             </div>
         </div>
 
+        <br><br>
+        <h2>Choose your destiny.. (Data): </h2>
+        <ul class="pagination col-sm-12">
+            <li class="listItem active" data-interest="science_education"><a href="#">Show Science / Education Data</a></li>
+            <li class="listItem" data-interest="financial"><a href="#">Show Financial Data</a></li>
+            <li class="listItem" data-interest="population"><a href="#">Show Population Data</a></li>
+            <li class="listItem" data-interest="military"><a href="#">Show Military Data</a></li>
+        </ul>
+
+        <br><br>
+        <br><br><br>
         <div class="loader"></div>
+
         <div class="col-sm-12" id="graphs_container">
 
         </div>
@@ -136,21 +151,23 @@
 
     <script>
 
-//        function setArabIsraeliWar1948() {
-//            var start = 1948;
-//            var end = 1951;
-//            var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
-//            onNewBarUpdateWithYears(start, end, selectedCountries)(start, end, selectedCountries);
-//        }
-//
-//        function setSuezCrisis1956() {
-//            var start = 1954;
-//            var end = 1958;
-//            var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
-//            onNewBarUpdateWithYears(start, end, selectedCountries)(start, end, selectedCountries);
-//        }
 
+        $('.listItem').click(function() {
+            $('.listItem').removeClass('active');
+            $(this).addClass('active');
+            var data = $(this).data();
+            switchFieldOfInterest(data.interest);
+        });
+        function switchFieldOfInterest(newInterest) {
+            redrawingDueToChangeinField = true;
+            currentFieldOfInterest = newInterest;
+            lastCalledFunction();
 
+        }
+
+        var currentFieldOfInterest = "science_education";
+        var lastCalledFunction;
+        var redrawingDueToChangeinField = false;
 
         //  Map out the files
         var fieldToIndicatorsTxtMap = {};
@@ -199,7 +216,7 @@
             var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
             YearSelected = 1967;
             onNewBarUpdateWithYears(start, end, selectedCountries);
-
+            lastCalledFunction = setSixDaysWar1967;
         }
 
         function setWarOfAttrition1968() {
@@ -208,6 +225,7 @@
             var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
             YearSelected = 1968;
             onNewBarUpdateWithYears(start, end, selectedCountries);
+            lastCalledFunction = setWarOfAttrition1968;
         }
 
         function setWarOfYomKipur1973() {
@@ -216,6 +234,7 @@
             var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
             YearSelected = 1973;
             onNewBarUpdateWithYears(start, end, selectedCountries);
+            lastCalledFunction = setWarOfYomKipur1973;
         }
 
         function setLebanonWar1982() {
@@ -224,6 +243,7 @@
             var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
             YearSelected = 1982;
             onNewBarUpdateWithYears(start, end, selectedCountries);
+            lastCalledFunction = setLebanonWar1982;
         }
 
         function setFirstIntefada1987() {
@@ -232,6 +252,7 @@
             var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
             YearSelected = 1987;
             onNewBarUpdateWithYears(start, end, selectedCountries);
+            lastCalledFunction = setFirstIntefada1987;
         }
 
         function setSecondIntefada2000() {
@@ -240,6 +261,7 @@
             var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
             YearSelected = 2000;
             onNewBarUpdateWithYears(start, end, selectedCountries);
+            lastCalledFunction = setSecondIntefada2000;
         }
 
         function setSecondLebanonWar2006() {
@@ -248,6 +270,7 @@
             var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
             YearSelected = 2006;
             onNewBarUpdateWithYears(start, end, selectedCountries);
+            lastCalledFunction = setSecondLebanonWar2006;
         }
 
         function setGazaWar2008() {
@@ -256,6 +279,7 @@
             var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
             YearSelected = 2008;
             onNewBarUpdateWithYears(start, end, selectedCountries);
+            lastCalledFunction = setGazaWar2008;
         }
 
         function setOperationPillarOfDefense2012() {
@@ -264,6 +288,7 @@
             var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
             YearSelected = 2012;
             onNewBarUpdateWithYears(start, end, selectedCountries);
+            lastCalledFunction = setOperationPillarOfDefense2012;
         }
 
         function setOperationProtectiveEdge2014() {
@@ -272,6 +297,7 @@
             var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
             YearSelected = 2014;
             onNewBarUpdateWithYears(start, end, selectedCountries);
+            lastCalledFunction = setOperationProtectiveEdge2014;
         }
 
         function setUpListeners() {
@@ -457,7 +483,9 @@
             var json2parse = [];
             //  Show the loading progress bar
 
-            indicators = getIndicatorsByFieldOfInterest('financial');
+//            indicators = getIndicatorsByFieldOfInterest('population');
+            indicators = getIndicatorsByFieldOfInterest(currentFieldOfInterest);
+
             var chartIndex = 0;
             //  Some sweet lambda's..
             indicators.forEach( indicator => {
@@ -490,11 +518,16 @@
 
 
             $(".graph").removeClass('animated zoomIn');
-            if(lastYearSelected < YearSelected) {
-                $(".graph").addClass('animated bounceOutLeft');
+            if(!redrawingDueToChangeinField) {
+                if(lastYearSelected < YearSelected) {
+                    $(".graph").addClass('animated bounceOutLeft');
+                }
+                else {
+                    $(".graph").addClass('animated bounceOutRight');
+                }
             }
             else {
-                $(".graph").addClass('animated bounceOutRight');
+                $(".graph").addClass('animated fadeOutDown');
             }
 
             lastYearSelected = YearSelected;
@@ -514,7 +547,7 @@
         function updateNew(jsonToWorkWith, typeOfChart, chartId, miniHeader, explenation) {
 
 
-            $("#graphs_container").append('<div class="col-sm-6 graph" id=' + chartId + 'e' + '> <h4>' + miniHeader + '</h4> <div id=' + chartId + '></div> <p>' + explenation + '</p> </div>');
+            $("#graphs_container").append('<div class="col-sm-6 graph" id=' + chartId + 'e' + '> <h4 margin-left: 80px>' + miniHeader + '</h4> <div id=' + chartId + '></div> <p>' + explenation + '</p> </div>');
 
             var xsData = {};
             //  Create an actual chart id with the # jquery id mark
