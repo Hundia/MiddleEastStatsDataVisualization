@@ -6,7 +6,9 @@
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Latest compiled JavaScript -->
@@ -53,21 +55,6 @@
                 margin-bottom: 150px;
                 /*margin-right: 15px;*/
             }
-
-            .loader {
-                margin: 0 auto;
-                border: 16px solid #f3f3f3; /* Light grey */
-                border-top: 16px solid #3498db; /* Blue */
-                border-radius: 50%;
-                width: 120px;
-                height: 120px;
-                animation: spin 2s linear infinite;
-            }
-
-            @keyframes spin {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-            }
     </style>
 
 </head>
@@ -75,7 +62,10 @@
 
 <body>
 
-
+    <h3 align="center">SVG Bar</h3>
+    <svg align="center" onclick="btnClick()">
+        <rect id="my1" align="center" x="250" width="50" height="200" style="fill: blue;"/>
+    </svg>
     <div class="container">
         <h1 align="center">The war of the middle east</h1>
         <h2 align="center">A song of stats and data</h2>
@@ -124,7 +114,6 @@
             </div>
         </div>
 
-        <div class="loader"></div>
         <div class="col-sm-12" id="graphs_container">
 
         </div>
@@ -135,7 +124,9 @@
 
 
     <script>
-
+        function btnClick() {
+            $('#my1').addClass('animated bounceOutLeft');
+        }
 //        function setArabIsraeliWar1948() {
 //            var start = 1948;
 //            var end = 1951;
@@ -159,7 +150,6 @@
         fieldToIndicatorsTxtMap['population'] = "../metadata_indicators/population.txt";
         fieldToIndicatorsTxtMap['science_education'] = "../metadata_indicators/science_education.txt";
 
-        var YearSelected = 1967;
 
         function getIndicatorsByFieldOfInterest(field) {
             var indicators = returnTextFileLines(fieldToIndicatorsTxtMap[field]);
@@ -197,16 +187,13 @@
             var start = 1965;
             var end = 1969;
             var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
-            YearSelected = 1967;
             onNewBarUpdateWithYears(start, end, selectedCountries);
-
         }
 
         function setWarOfAttrition1968() {
             var start = 1967;
             var end = 1970;
             var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
-            YearSelected = 1968;
             onNewBarUpdateWithYears(start, end, selectedCountries);
         }
 
@@ -214,7 +201,6 @@
             var start = 1971;
             var end = 1975;
             var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
-            YearSelected = 1973;
             onNewBarUpdateWithYears(start, end, selectedCountries);
         }
 
@@ -222,7 +208,6 @@
             var start = 1980;
             var end = 1984;
             var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
-            YearSelected = 1982;
             onNewBarUpdateWithYears(start, end, selectedCountries);
         }
 
@@ -230,7 +215,6 @@
             var start = 1985;
             var end = 1989;
             var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
-            YearSelected = 1987;
             onNewBarUpdateWithYears(start, end, selectedCountries);
         }
 
@@ -238,7 +222,6 @@
             var start = 1998;
             var end = 2002;
             var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
-            YearSelected = 2000;
             onNewBarUpdateWithYears(start, end, selectedCountries);
         }
 
@@ -246,7 +229,6 @@
             var start = 2004;
             var end = 2007;
             var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
-            YearSelected = 2006;
             onNewBarUpdateWithYears(start, end, selectedCountries);
         }
 
@@ -254,7 +236,6 @@
             var start = 2007;
             var end = 2010;
             var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
-            YearSelected = 2008;
             onNewBarUpdateWithYears(start, end, selectedCountries);
         }
 
@@ -262,7 +243,6 @@
             var start = 2011;
             var end = 2013;
             var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
-            YearSelected = 2012;
             onNewBarUpdateWithYears(start, end, selectedCountries);
         }
 
@@ -270,7 +250,6 @@
             var start = 2013;
             var end = 2015;
             var selectedCountries = ['ISR','JOR','EGY','LBN','PSE'];
-            YearSelected = 2014;
             onNewBarUpdateWithYears(start, end, selectedCountries);
         }
 
@@ -330,7 +309,6 @@
 
 
         function buildJsonFromData(json2parse) {
-
             d3.select("svg").remove();
 //            var start = document.getElementById('yearStart');
 //            var end = document.getElementById('yearEnd');
@@ -443,20 +421,14 @@
 
 
 
-        function showLoading() {
-            $(".loader").show();
-        }
-        function clearLoading() {
-            $(".loader").hide();
-        }
 
-        //  Called after the animation is done..!
-        function removeAndRebuildGraphs(start, end, countries) {
-
-            $(".graph").remove();
+        function onNewBarUpdateWithYears(start, end, countries) {
             var json2parse = [];
 
             indicators = getIndicatorsByFieldOfInterest('financial');
+
+            $(".graph").remove();
+
             var chartIndex = 0;
             //  Some sweet lambda's..
             indicators.forEach( indicator => {
@@ -481,22 +453,6 @@
                 updateNew(json2parse, 'line', chartId, miniHeader, explenation);
                 chartIndex++;
             });
-
-            clearLoading();
-        }
-
-        function onNewBarUpdateWithYears(start, end, countries) {
-            showLoading();
-            if(lastYearSelected < YearSelected) {
-                $(".graph").addClass('animated bounceOutLeft');
-            }
-            else {
-                $(".graph").addClass('animated bounceOutRight');
-            }
-
-            lastYearSelected = YearSelected;
-
-            setTimeout(removeAndRebuildGraphs, 1000,start, end, countries);
 
 
         }
@@ -577,7 +533,6 @@
         setUpListeners();
         setSixDaysWar1967();
 
-        var lastYearSelected = 0;
 
     </script>
 </body>
