@@ -546,24 +546,21 @@
 
         function updateNew(jsonToWorkWith, typeOfChart, chartId, miniHeader, explenation) {
 
-
-            $("#graphs_container").append('<div class="col-sm-6 graph" id=' + chartId + 'e' + '> <h4 margin-left: 80px>' + miniHeader + '</h4> <div id=' + chartId + '></div> <p>' + explenation + '</p> </div>');
-
             var xsData = {};
             //  Create an actual chart id with the # jquery id mark
             var actualChartId = '#' + chartId;
             var data2Gen = {bindto: actualChartId, data:{ xs: {}, columns: [], type: typeOfChart},subchart: {show: false}, zoom: {enabled: true}};
 
+            var dataExists = false;
             for (i = 0; i < jsonToWorkWith.length; i++) {
                 var countryName = '';
-
 
                 var isrYears = ['Year'];
                 var isrVals = [];
 
                 var json2parse = jsonToWorkWith[i];
 
-//                console.log(json2parse[0]);
+                console.log(json2parse[0]);
 
                 json2parse.forEach(function (d) {
                     countryName = d.countryLabel;
@@ -588,34 +585,26 @@
                     //                isrVals.push(d.Val);
                 })
 
-//                console.log(isrYears);
-//                console.log(isrVals);
-//                console.log(typeof countryName);
 
                 xsData[countryName] = 'Year';
 
 
-                data2Gen.data.columns.push(isrVals,isrYears);
-                data2Gen.data.xs[countryName] = 'Year';
+                //  Check if atleast one of the countries has any data to display..
+                if(!(0 == isrVals.slice(1, isrVals.length).reduce((pv, cv) => pv+cv, 0))) {
+                    dataExists = true;
+                    data2Gen.data.columns.push(isrVals,isrYears);
+                    data2Gen.data.xs[countryName] = 'Year';
+                }
 
 
             }
 
-
-//            console.log(data2Gen);
-            var chart = c3.generate(data2Gen);
-
-            animateEnterence(chartId + 'e');
-
-//        var chart = c3.generate({
-//            data: {
-//                xs: xsData,
-//                columns: [isrVals, isrYears
-//
-//                ],
-//                type: typeOfChart,
-//            }
-//        });
+            //  Draw only if there is atleast one country with data
+            if(true == dataExists) {
+                $("#graphs_container").append('<div class="col-sm-6 graph" id=' + chartId + 'e' + '> <h4 margin-left: 80px>' + miniHeader + '</h4> <div id=' + chartId + '></div> <p>' + explenation + '</p> </div>');
+                var chart = c3.generate(data2Gen);
+                animateEnterence(chartId + 'e');
+            }
         }
 
         setUpListeners();
