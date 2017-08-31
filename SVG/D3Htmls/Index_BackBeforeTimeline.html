@@ -7,6 +7,9 @@
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+
+    <audio id="my_audio" src="audio/GOT.mp3" loop="loop"></audio>
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Latest compiled JavaScript -->
@@ -48,6 +51,7 @@
 
 
 <body>
+
 
 
     <div class="container">
@@ -100,6 +104,9 @@
 
     <script>
 
+        $(document).ready(function() {
+            $("#my_audio").get(0).play();
+        });
         for (var i = 1980; i < 2016; i++) {
             $('#yearStart').append($('<option>', {
                 value: i,
