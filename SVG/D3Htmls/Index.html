@@ -545,7 +545,7 @@
         function onNewBarUpdateWithYears(start, end, countries) {
 
 
-            $(".graph").removeClass('animated zoomInUp');
+            $(".graph").removeClass('animated zoomIn');
             if(!redrawingDueToChangeinField) {
                 if(lastYearSelected < YearSelected) {
                     $(".graph").addClass('animated bounceOutLeft');
@@ -555,7 +555,7 @@
                 }
             }
             else {
-                $(".graph").addClass('animated zoomOutDown');
+                $(".graph").addClass('animated zoomOut');
                 redrawingDueToChangeinField = false;
             }
 
@@ -569,7 +569,7 @@
 
 
         function animateEnterence(chartId) {
-            $("#" + chartId).addClass('animated zoomInUp');
+            $("#" + chartId).addClass('animated zoomIn');
 //            $("#" + chartId).addClass('animated flip');
         }
 
