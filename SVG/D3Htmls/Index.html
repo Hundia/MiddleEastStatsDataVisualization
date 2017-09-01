@@ -157,6 +157,7 @@
 
     <script>
 
+        var hostAddr = '192.168.1.11:5000';
 //        $(document).ready(function() {
 //            $("#my_audio").get(0).play();
 //        });
@@ -364,6 +365,7 @@
 
 
 
+        //  Deprecated..
         function buildJsonFromData(json2parse) {
 
             d3.select("svg").remove();
@@ -393,7 +395,7 @@
             for (i = 0; i < selectedCountries.length; i++) {
                 cntryName = selectedCountries[i];
                 xhr = new XMLHttpRequest();
-                reqStr = "http://192.168.1.11:5000/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart + "&yearEnd=" + yearEnd;
+                reqStr = "http://" + hostAddr + "/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart + "&yearEnd=" + yearEnd;
                 xhr.open("GET", reqStr, false);
                 xhr.send();
 
@@ -424,7 +426,7 @@
                 cntryName = selectedCountries[i];
                 xhr = new XMLHttpRequest();
 
-                reqStr = "http://192.168.1.11:5000/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart + "&yearEnd=" + yearEnd + "&infoLabel=" + infoLabel;
+                reqStr = "http://" + hostAddr + "/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart + "&yearEnd=" + yearEnd + "&infoLabel=" + infoLabel;
 //                console.log(reqStr);
                 xhr.open("GET", reqStr, false);
 
@@ -434,8 +436,6 @@
                             console.log(xhr.responseText);
                             parsedJson = [];
                             parsedJson.push(JSON.parse(xhr.response));
-
-//                console.log(parsedJson);
                             json2parse.push(parsedJson);
                         } else {
                             console.error(xhr.statusText);
