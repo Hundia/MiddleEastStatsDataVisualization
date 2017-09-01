@@ -6,7 +6,11 @@ var serverInfoApi = require('./DataApi/countryInfoApi.js');
 
 
 
-app.use(express.static('../D3Htmls'), express.static('../node_modules'));
+app.use(express.static('../D3Htmls'), express.static('../node_modules'), function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 /* serves main page */
 app.get("/", function(req, res) {
@@ -64,6 +68,7 @@ app.get('/getCountriesHiTechInfoLineCharted', function (req, res) {
     // console.log("Res: " + queryResStr);
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.setHeader('Access-Control-Allow-Origin', '*');
+    // res.addHeader('Access-Control-Allow-Origin', '192.168.1.13');
     res.end(queryResStr);
 
 })

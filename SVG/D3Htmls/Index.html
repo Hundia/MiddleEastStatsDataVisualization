@@ -393,7 +393,7 @@
             for (i = 0; i < selectedCountries.length; i++) {
                 cntryName = selectedCountries[i];
                 xhr = new XMLHttpRequest();
-                reqStr = "http://localhost:5000/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart + "&yearEnd=" + yearEnd;
+                reqStr = "http://192.168.1.11:5000/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart + "&yearEnd=" + yearEnd;
                 xhr.open("GET", reqStr, false);
                 xhr.send();
 
@@ -424,17 +424,36 @@
                 cntryName = selectedCountries[i];
                 xhr = new XMLHttpRequest();
 
-                reqStr = "http://localhost:5000/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart + "&yearEnd=" + yearEnd + "&infoLabel=" + infoLabel;
+                reqStr = "http://192.168.1.11:5000/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart + "&yearEnd=" + yearEnd + "&infoLabel=" + infoLabel;
 //                console.log(reqStr);
                 xhr.open("GET", reqStr, false);
-                xhr.withCredentials = false;
-                xhr.send();
 
-                parsedJson = [];
-                parsedJson.push(JSON.parse(xhr.response));
+                xhr.onload = function (e) {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            console.log(xhr.responseText);
+                            parsedJson = [];
+                            parsedJson.push(JSON.parse(xhr.response));
 
 //                console.log(parsedJson);
-                json2parse.push(parsedJson);
+                            json2parse.push(parsedJson);
+                        } else {
+                            console.error(xhr.statusText);
+                        }
+                    }
+                };
+                xhr.onerror = function (e) {
+                    console.error(xhr.statusText);
+                };
+
+//                xhr.withCredentials = false;
+                xhr.send(null);
+
+//                parsedJson = [];
+//                parsedJson.push(JSON.parse(xhr.response));
+//
+////                console.log(parsedJson);
+//                json2parse.push(parsedJson);
             }
         }
 
