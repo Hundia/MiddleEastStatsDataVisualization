@@ -157,6 +157,7 @@
 
     <script>
 
+        var hostAddr = '192.168.1.11:5000';
 //        $(document).ready(function() {
 //            $("#my_audio").get(0).play();
 //        });
@@ -364,6 +365,7 @@
 
 
 
+        //  Deprecated..
         function buildJsonFromData(json2parse) {
 
             d3.select("svg").remove();
@@ -393,7 +395,7 @@
             for (i = 0; i < selectedCountries.length; i++) {
                 cntryName = selectedCountries[i];
                 xhr = new XMLHttpRequest();
-                reqStr = "http://localhost:5000/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart + "&yearEnd=" + yearEnd;
+                reqStr = "http://" + hostAddr + "/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart + "&yearEnd=" + yearEnd;
                 xhr.open("GET", reqStr, false);
                 xhr.send();
 
@@ -424,17 +426,34 @@
                 cntryName = selectedCountries[i];
                 xhr = new XMLHttpRequest();
 
-                reqStr = "http://localhost:5000/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart + "&yearEnd=" + yearEnd + "&infoLabel=" + infoLabel;
+                reqStr = "http://" + hostAddr + "/getCountriesHiTechInfoLineCharted?country=" + cntryName + '&yearStart=' + yearStart + "&yearEnd=" + yearEnd + "&infoLabel=" + infoLabel;
 //                console.log(reqStr);
                 xhr.open("GET", reqStr, false);
-                xhr.withCredentials = false;
-                xhr.send();
 
-                parsedJson = [];
-                parsedJson.push(JSON.parse(xhr.response));
+                xhr.onload = function (e) {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            console.log(xhr.responseText);
+                            parsedJson = [];
+                            parsedJson.push(JSON.parse(xhr.response));
+                            json2parse.push(parsedJson);
+                        } else {
+                            console.error(xhr.statusText);
+                        }
+                    }
+                };
+                xhr.onerror = function (e) {
+                    console.error(xhr.statusText);
+                };
 
-//                console.log(parsedJson);
-                json2parse.push(parsedJson);
+//                xhr.withCredentials = false;
+                xhr.send(null);
+
+//                parsedJson = [];
+//                parsedJson.push(JSON.parse(xhr.response));
+//
+////                console.log(parsedJson);
+//                json2parse.push(parsedJson);
             }
         }
 
@@ -526,7 +545,7 @@
         function onNewBarUpdateWithYears(start, end, countries) {
 
 
-            $(".graph").removeClass('animated zoomInUp');
+            $(".graph").removeClass('animated zoomIn');
             if(!redrawingDueToChangeinField) {
                 if(lastYearSelected < YearSelected) {
                     $(".graph").addClass('animated bounceOutLeft');
@@ -536,7 +555,7 @@
                 }
             }
             else {
-                $(".graph").addClass('animated zoomOutDown');
+                $(".graph").addClass('animated zoomOut');
                 redrawingDueToChangeinField = false;
             }
 
@@ -550,7 +569,7 @@
 
 
         function animateEnterence(chartId) {
-            $("#" + chartId).addClass('animated zoomInUp');
+            $("#" + chartId).addClass('animated zoomIn');
 //            $("#" + chartId).addClass('animated flip');
         }
 
