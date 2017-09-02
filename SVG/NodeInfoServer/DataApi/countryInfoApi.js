@@ -31,7 +31,7 @@ function getCountryInfoByYear(indicatorCode, year, countryCode) {
 
         if(line['Indicator Code'] == indicatorCode && line['Country Code'] == countryCode)
         {
-            console.log(line);
+            //console.log(line);
             // res['Country'] = line['Country Name'];
             res['Year'] = year;
             res['Val'] = parseInt(line[year]);

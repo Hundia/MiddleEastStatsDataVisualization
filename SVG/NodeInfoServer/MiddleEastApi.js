@@ -15,7 +15,7 @@ for (var i = 0; i < metaJson.length; i++) {
     var line = metaJson[i];
     // console.log(line);
     countryCodeToNameDict[line['Country Code']] = line.TableName;
-    console.log('key: ' +  line['Country Code'] + ' Val: ' + countryCodeToNameDict[line['Country Code']]);
+    //console.log('key: ' +  line['Country Code'] + ' Val: ' + countryCodeToNameDict[line['Country Code']]);
 }
 
 // console.log(parsedJSON);
