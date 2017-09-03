@@ -389,11 +389,11 @@
         </div>
 
         <br><br>
-        <h2>What kind data you want to check out on this fine day..</h2>
+        <h2>What kind of data would you like to check out on this fine day..</h2>
         <ul class="pagination col-sm-12">
-            <li class="listItem active" data-interest="science_education"><a href="#">Show Science / Education Data</a></li>
+            <li class="listItem" data-interest="science_education"><a href="#">Show Science / Education Data</a></li>
             <li class="listItem" data-interest="financial"><a href="#">Show Financial Data</a></li>
-            <li class="listItem" data-interest="population"><a href="#">Show Population Data</a></li>
+            <li class="listItem active" data-interest="population"><a href="#">Show Population Data</a></li>
             <li class="listItem" data-interest="military"><a href="#">Show Military Data</a></li>
         </ul>
 
@@ -414,10 +414,12 @@
 
 //        var hostAddr = '37.46.36.36:5000';
         var hostAddr = 'localhost:5000';
+        //  -------------------------------------------------------------------------------------
+        //  Decided not to play game of thrones music when entering the website eventually... :-(
 //        $(document).ready(function() {
 //            $("#my_audio").get(0).play();
 //        });
-
+        //  -------------------------------------------------------------------------------------
         $('.listItem').click(function() {
             $('.listItem').removeClass('active');
             $(this).addClass('active');
@@ -431,7 +433,7 @@
 
         }
 
-        var currentFieldOfInterest = "science_education";
+        var currentFieldOfInterest = "population";
         var lastCalledFunction;
         var redrawingDueToChangeinField = false;
 
@@ -449,6 +451,7 @@
             return indicators;
         }
 
+        //  Deprecated
         function CSVtoArray(text) {
             var re_valid = /^\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*(?:,\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*)*$/;
             var re_value = /(?!\s*$)\s*(?:'([^'\\]*(?:\\[\S\s][^'\\]*)*)'|"([^"\\]*(?:\\[\S\s][^"\\]*)*)"|([^,'"\s\\]*(?:\s+[^,'"\s\\]+)*))\s*(?:,|$)/g;
@@ -748,10 +751,6 @@
             rawFile.send(null);
             return indicators;
         }
-
-
-
-
 
         function showLoading() {
             $(".loader").show();
