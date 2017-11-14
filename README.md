@@ -23,6 +23,15 @@ The browser
 I have created a fully functional website, under my personal belief that this website can serve as a tool for researches to investigate the effects of wars on different aspects of our day to day lives. I took the time to build a stable, scalable, dynamic and fast and user-friendly website, in hope that it might serve as a framework or a tool for future academic developments / research that will expand / utilize it to their needs.
 I have given as much as though to the user interfaces as I gave the actual data representation. To wonder around different times in history, let alone in different categories in our day to day lives, has to be a simple task for the user or he might get lost in the data. After running though countless ideas and frameworks, I have concluded that a timeline, to iterate over the years is by far the most simple and intuitive user interface to wonder around through the wars. With the timeline, in order provide some basic information about each conflict, I added a brief quotation from Wikipedia, to give the user a brief background to the conflict for which its data he is about to see. Not only traveling through the wars is important, most users will be the academic types and they usually come to query something that interest their field of study. The general categories that comes with the dataset must also be easily navigable, a user the is interested in financial stats and data does not care for the growth percentage of the population and it will be inconvenient for him to scroll through such data instead of being shown the relevant data for his research. So, I added another ability to view groups of information under pre-defined categories the user can choose from. Under each category, you can find plenty of visualized stats and data for different conflicts.
 
+Usage
+-----
+
+Inorder to run the server you must have node.js installed on the PC you are running the server on. Once you have Node.js installed, you simply open a shell (Bash or Command prompt) in the folder location “/NodeInfoServer” which can be found under the root folder of the project and run the command “node Index.js”.
+The server will listen on port 5000 by default, feel free to change it to whatever port you see fit.
+Once the server starts, it will serve the index.html that can be found under the folder D3Htmls, (a legacy folder name from the start of the course, they never really do change eventually.... ☺) when entering type localost:5000 on the web browser address.
+
+Inorder to start using the UI simply open any web browser once the server is up, type in the address localhost:5000 and you are good to go...!
+
 Propect Presentation
 --------------------
 https://drive.google.com/open?id=0B1cisIvB7e8pX2JNQjZrdDJBajdzY3NhRWV3Uk95VmVwSjI0
